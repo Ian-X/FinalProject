@@ -15,6 +15,21 @@ function validate_login($email, $password){
 		return false;
 	}
 }
+function get_user($userId){
+    global $db;
+    $query = 'SELECT * FROM accounts WHERE id = :userId';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userId', $userId);
+    $statement->execute();
+    $user = $statement->fetch();
+    $statement->closeCursor();
+
+    if(count($user) > 0){
+        return $user;
+    }else{
+        return false;
+    }
+}
 function create_user($email, $fname, $lname, $bday, $password){
     global $db;
     $query = 'INSERT INTO accounts 

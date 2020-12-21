@@ -45,6 +45,8 @@ switch ($action) {
 		if($userId == NULL || $userId < 0){
 			header('Location: .?action=show_login');
 		}else{
+            $user = get_user($userId);
+            $fullname = $user[fname].' '.$user[lname];
 			$questions = get_users_questions($userId);
 			include('views/display_questions.php');
 		}
@@ -106,7 +108,9 @@ switch ($action) {
 			$error = 'All fields are required';
 			include('errors/error.php');
 		}else{
-			create_question($title, $body, $skills, $userId);
+		    $user = get_user($userId);
+		    $email = $user['email'];
+			create_question($title, $body, $skills, $userId, $email);
 			header("Location: .?action=display_questions&userId=$userId");
 		}
 		break;

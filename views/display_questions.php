@@ -1,5 +1,6 @@
 <?php include('abstract-views/header.php'); ?>
     <a href=".?action=display_question_form&userId=<?php echo $userId; ?>" class="btn-info">Add Question</a>
+<h1>Hello <?php echo $fullname; ?></h1>
 <table>
 	<tr>
 		<th>Name</th>

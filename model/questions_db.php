@@ -11,17 +11,18 @@ function get_users_questions($userId){
 	
 	return $questions;
 }
-function create_question ($title, $body, $skills, $ownerid){
+function create_question ($title, $body, $skills, $ownerid, $email){
 	global $db;
 	$query = 'INSERT INTO questions 
-				(title, body, skills, ownerid)
+				(title, body, skills, ownerid, owneremail)
 				VALUES
-				(:title, :body, :skills, :ownerid)';
+				(:title, :body, :skills, :ownerid, :email)';
 	$statement = $db->prepare($query);
 	$statement->bindValue(':title', $title);
 	$statement->bindValue(':body', $body);
 	$statement->bindValue(':skills', $skills);
 	$statement->bindValue(':ownerid', $ownerid);
+    $statement->bindValue(':email', $email);
 	$statement->execute();
     $statement->closeCursor();
 }
