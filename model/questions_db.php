@@ -5,14 +5,16 @@ class QuestionDB{
         $query = 'SELECT * FROM questions';
         $statement = $db->prepare($query);
         $statement->execute();
+        $something = $statement->fetchAll();
         $statement->closeCursor();
 
         $questions = array();
-        foreach($statement as $row){
+        foreach($something as $row){
             $question = new Question($row['id'], $row['owneremail'], $row['ownerid'], $row['createddate'], $row['title'], $row['body'], $row['skills'], $row['score']);
-            array_push($questions, $question);
+            $questions[] = $question;
         }
         return $questions;
+
     }
 
     function create_question ($title, $body, $skills, $ownerid, $email){

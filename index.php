@@ -114,7 +114,6 @@ switch ($action) {
             $error = 'All fields are required';
             include('errors/error.php');
         }else{
-            $email = $user['email'];
             QuestionDB::create_question($title, $body, $skills, $_SESSION['userid'], $_SESSION['email']);
             header("Location: .?action=display_questions");
         }
