@@ -1,0 +1,12 @@
+header{
+    color: white;
+    background-color: #80AAFF;
+    padding: 60px;
+}
+body{
+    background-color: lightblue;
+}
+.btn-info{
+    float:right;
+
+}
