@@ -9,6 +9,16 @@
         private $skills;
         private $score;
 
+        public function __construct($id, $email, $ownerid, $createddate, $title, $body, $skills, $score){
+            $this->id = $id;
+            $this->email = $email;
+            $this->ownerid = $ownerid;
+            $this->createddate = $createddate;
+            $this->title = $title;
+            $this->body = $body;
+            $this->skills = $skills;
+            $this->score = $score;
+        }
         public function getID() {
             return $this->id;
         }
@@ -32,6 +42,24 @@
         }
         public function getSkills() {
             return $this->skills;
+        }
+        public function newAnswer($body, $email) {
+            $db = Database::getDB();
+            $query = 'Insert INTO answers (body, questionid, email) VALUES (:body, :id, :email)';
+            $statement = $db->prepare($query);
+            $statement->bindValue(':id', $this->id);
+            $statement->bindValue(':body', $body);
+            $statement->bindValue(':email', $email);
+            $statement->execute();
+            $statement->closeCursor();
+        }
+        public function getAnswers() {
+            $db = Database::getDB();
+            $query = 'SELECT * FROM answers WHERE questionid=:id';
+            $statement = $db->prepare($query);
+            $statement->bindValue(':id', $this->id);
+            $statement->execute();
+            $statement->closeCursor();
         }
     }
 ?>

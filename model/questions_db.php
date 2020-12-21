@@ -10,8 +10,10 @@ class QuestionDB{
 
         $questions = array();
         foreach($statement as $row){
-            $question = new
+            $question = new question($row['id'], $row['owneremail'], $row['ownerid'], $row['createddate'], $row['title'], $row['body'], $row['skills'], $row['score']);
+            $questions[] = $question;
         }
+        return $questions;
     }
 
     function create_question ($title, $body, $skills, $ownerid, $email){
@@ -30,14 +32,24 @@ class QuestionDB{
         $statement->closeCursor();
     }
 
-    function delete_question ($title, $body, $skills, $ownerid){
+    function delete_question ($question){
         $db = Database::getDB();
-        $query = 'DELETE FROM questions WHERE title = :title AND body = :body AND skills = :skills AND ownerid = :ownerid';
+        $query = 'DELETE FROM questions WHERE id = :id';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $question.getID());
+        $statement->execute();
+        $statement->closeCursor();
+    }
+    function edit_question ($question, $title, $body, $skills){
+        $db = Database::getDB();
+        $query = 'UPDATE questions 
+                    SET title = :title, body = :body, skills = :skills 
+                    WHERE id = :id ';
         $statement = $db->prepare($query);
         $statement->bindValue(':title', $title);
         $statement->bindValue(':body', $body);
         $statement->bindValue(':skills', $skills);
-        $statement->bindValue(':ownerid', $ownerid);
+        $statement->bindValue(':id', $question.getID());
         $statement->execute();
         $statement->closeCursor();
     }
