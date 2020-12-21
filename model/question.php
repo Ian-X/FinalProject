@@ -55,7 +55,7 @@
         }
         public function getAnswers() {
             $db = Database::getDB();
-            $query = 'SELECT * FROM answers WHERE questionid=:id';
+            $query = 'SELECT * FROM answers WHERE questionid=:id ORDER BY score DSC';
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $this->id);
             $statement->execute();
