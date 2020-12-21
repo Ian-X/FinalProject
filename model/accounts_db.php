@@ -1,6 +1,7 @@
 <?php
+require('model/accounts.php');
 class AccountDB{
-    function validate_login($email, $password){
+    static function validate_login($email, $password){
         $db = Database::getDB();
         $query = 'SELECT * FROM accounts WHERE email = :email AND password = :password';
         $statement = $db->prepare($query);
@@ -17,7 +18,7 @@ class AccountDB{
             return false;
         }
     }
-    function create_user($email, $fname, $lname, $bday, $password){
+    static function create_user($email, $fname, $lname, $bday, $password){
         $db = Database::getDB();
         $query = 'INSERT INTO accounts 
 				(email, fname, lname, birthday, password)

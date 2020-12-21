@@ -1,6 +1,6 @@
 <?php include('abstract-views/header.php'); ?>
 <h1>Registration</h1>
-    <form action="index.php" method="GET">
+    <form action="index.php" method="POST">
         <input type="hidden" name="action" value="register_user">
 
         <div class="form-group">

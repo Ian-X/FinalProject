@@ -2,6 +2,9 @@
 require('model/database.php');
 require('model/accounts_db.php');
 require('model/questions_db.php');
+require('model/accounts.php');
+require('model/answers.php');
+require('model/question.php');
 /*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
@@ -16,6 +19,7 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'show_login': {
+        session_start();
         include('views/login.php');
         break;
     }
@@ -31,7 +35,8 @@ switch ($action) {
 				header('Location: .?action=display_registration');
 			}
 			else{
-				header("Location: .?action=display_questions&userId=$userId");
+			    $_SESSION["user"] = $user;
+				header("Location: .?action=display_questions");
 			}
 		}
 		break;
@@ -40,36 +45,12 @@ switch ($action) {
 		include('views/registration.php');
 		break;
 	}
-	case 'display_questions':{
-		$userId = filter_input(INPUT_GET, 'userId');
-		if($userId == NULL || $userId < 0){
-			header('Location: .?action=show_login');
-		}else{
-            $user = get_user($userId);
-            $fullname = $user[fname].' '.$user[lname];
-			$questions = get_users_questions($userId);
-			include('views/display_questions.php');
-		}
-		break;
-	}
-	case 'display_question_form': {
-		$userId = filter_input(INPUT_GET, 'userId');
-        $title = filter_input(INPUT_GET, 'title');
-        $body = filter_input(INPUT_GET, 'body');
-        $skills = filter_input(INPUT_GET, 'skills');
-		if($userId == NULL || $userId < 0){
-			header('Location: .?action=show_login');
-		}else{
-			include('views/questions_form.php');
-		}
-		break;
-	}
     case 'register_user':{
-        $fname = filter_input(INPUT_GET, 'fname');
-        $lname = filter_input(INPUT_GET, 'lname');
-        $bday = filter_input(INPUT_GET, 'bday');
-        $email = filter_input(INPUT_GET, 'email');
-        $password = filter_input(INPUT_GET, 'pass');
+        $fname = filter_input(INPUT_POST, 'fname');
+        $lname = filter_input(INPUT_POST, 'lname');
+        $bday = filter_input(INPUT_POST, 'bday');
+        $email = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'pass');
         if($email == NULL || $password == NULL || $fname == NULL || $lname == NULL || $bday == NULL){
             $error = 'All fields must be filled';
             include('errors/error.php');
@@ -83,13 +64,44 @@ switch ($action) {
                 include('errors/error.php');
             }
             else{
-                create_user($email, $fname, $lname, $bday, $password);
-                header('Location: .?action=show_login');
-                echo $password;
+                AccountDB::create_user($email, $fname, $lname, $bday, $password);
+                $user = AccountDB::validate_login($email, $password);
+                $_SESSION["user"] = $user;
+                header("Location: .?action=display_questions&userquestions=false");
             }
         }
         break;
     }
+    case 'display_questions':{
+        $userId = $_SESSION["user"].getID();
+        if($userId == NULL || $userId < 0){
+            header('Location: .?action=show_login');
+        }else{
+            $_SESSION["fullname"] = $_SESSION["user"].getFirstName().' '.$_SESSION["user"].getLastName();
+            $questions = QuestionDB::get_questions();
+            if($userquestions==true){
+                include('views/display_questions.php&userquestions=true');
+            }
+            else{
+                include('views/display_questions.php');
+            }
+        }
+        break;
+    }
+	/*
+	case 'display_question_form': {
+		$userId = filter_input(INPUT_GET, 'userId');
+        $title = filter_input(INPUT_GET, 'title');
+        $body = filter_input(INPUT_GET, 'body');
+        $skills = filter_input(INPUT_GET, 'skills');
+		if($userId == NULL || $userId < 0){
+			header('Location: .?action=show_login');
+		}else{
+			include('views/questions_form.php');
+		}
+		break;
+	}
+
     case 'edit_question':{
         $userId = filter_input(INPUT_POST, 'userId');
         $title = filter_input(INPUT_POST, 'title');
@@ -104,7 +116,7 @@ switch ($action) {
 		$title = filter_input(INPUT_POST, 'title');
 		$body = filter_input(INPUT_POST, 'body');
 		$skills = filter_input(INPUT_POST, 'skills');
-		if($userId == NULL || $title == NULL || $body == NULL || $skills == NULL){
+		if($title == NULL || $body == NULL || $skills == NULL){
 			$error = 'All fields are required';
 			include('errors/error.php');
 		}else{
@@ -124,8 +136,12 @@ switch ($action) {
         header("Location: .?action=display_questions&userId=$userId&title=$title&body=$body&skills=$skills");
 
         break;
+    }*/
+    case 'log_out':{
+        session_unset();
+        session_destroy();
+        header("Location: .?action=show_login");
     }
-
     default: {
         $error = 'Unknown Action';
         include('errors/error.php');

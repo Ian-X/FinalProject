@@ -1,21 +1,15 @@
 <?php include('abstract-views/header.php'); ?>
-    <a href=".?action=display_question_form&userId=<?php echo $userId; ?>" class="btn-info">Add Question</a>
-<h1>Hello <?php echo $fullname; ?></h1>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Body</th>
-        <th>Skills</th>
-	</tr>
-	<?php foreach($questions as $question) : ?>
-	<tr>
-		<td><?php echo $question['title']; ?></td>
-		<td><?php echo $question['body']; ?></td>
-        <td><?php echo $question['skills']; ?></td>
-	</tr>
-    <tr>
-        <td><form action="index.php" method="POST">
-
+    <a href=".?action=display_question_form>" class="btn-info">Add Question</a>
+    <a href=".?action=display_questions&userquestions=true>" class="btn-info">Add Question</a>
+<h1>Hello <?php echo $_SESSION["fullname"]; ?></h1>
+<?php foreach($questions as $question) :
+    if($_GET){?>
+    <div class="">
+        <h2>Name: </h2><?php echo $question['title']; ?><br>
+        <h2>Body: </h2><?php echo $question['body']; ?><br>
+        <h2>Skills: </h2><?php echo $question['skills']; ?><br>
+        <br>
+        <form action="index.php" method="POST">
             <input type="hidden" name="action" value="edit_question">
             <input type="hidden" name="userId" value="<?php echo $userId; ?>">
             <input type="hidden" name="title" value="<?php echo $question['title']; ?>">
@@ -27,8 +21,6 @@
             <button type="submit" class="btn btn-primary">Edit Question</button>
 
         </form>
-        </td>
-        <td>
         <form action="index.php" method="POST">
             <input type="hidden" name="action" value="delete_question">
             <input type="hidden" name="userId" value="<?php echo $userId; ?>">
@@ -38,8 +30,7 @@
             <button type="submit" class="btn btn-primary">Delete Question</button>
 
         </form>
-        </td>
-    </tr>
-	<?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
 </table>
 <?php include('abstract-views/footer.php'); ?>
