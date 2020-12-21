@@ -1,5 +1,4 @@
 <?php
-require('model/accounts.php');
 class AccountDB{
     static function validate_login($email, $password){
         $db = Database::getDB();

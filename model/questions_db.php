@@ -1,6 +1,6 @@
 <?php
 class QuestionDB{
-    function get_questions(){
+    static function get_questions(){
         $db = Database::getDB();
         $query = 'SELECT * FROM questions';
         $statement = $db->prepare($query);

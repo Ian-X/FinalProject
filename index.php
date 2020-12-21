@@ -1,13 +1,17 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require('model/database.php');
 require('model/accounts_db.php');
 require('model/questions_db.php');
 require('model/accounts.php');
 require('model/answers.php');
 require('model/question.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -15,14 +19,13 @@ if ($action == NULL) {
         $action = 'show_login';
     }
 }
-
+session_start();
 switch ($action) {
     case 'show_login': {
         include('views/login.php');
         break;
     }
 	case 'validate_login':{
-        session_start();
 		$email = filter_input(INPUT_POST, 'email');
 		$password = filter_input(INPUT_POST, 'password');
 		if($email == NULL || $password == NULL){
@@ -34,7 +37,10 @@ switch ($action) {
 				header('Location: .?action=display_registration');
 			}
 			else{
-			    $_SESSION["user"] = $user;
+			    $_SESSION['userid'] = $user->getID();
+                $_SESSION['fname'] = $user->getFirstName();
+                $_SESSION['lname'] = $user->getLastName();
+                $_SESSION['email'] = $user->getEmail();
 				header("Location: .?action=display_questions");
 			}
 		}
@@ -65,18 +71,21 @@ switch ($action) {
             else{
                 AccountDB::create_user($email, $fname, $lname, $bday, $password);
                 $user = AccountDB::validate_login($email, $password);
-                $_SESSION["user"] = $user;
+                $_SESSION['userid'] = $user->getID();
+                $_SESSION['fname'] = $user->getFirstName();
+                $_SESSION['lname'] = $user->getLastName();
+                $_SESSION['email'] = $user->getEmail();
                 header("Location: .?action=display_questions&userquestions=false");
             }
         }
         break;
     }
     case 'display_questions':{
-        $userId = $_SESSION["user"].getID();
+        $userId = $_SESSION['userid'];
         if($userId == NULL || $userId < 0){
             header('Location: .?action=show_login');
         }else{
-            $_SESSION["fullname"] = $_SESSION["user"].getFirstName().' '.$_SESSION["user"].getLastName();
+            $_SESSION["fullname"] = $_SESSION['fname'].' '.$_SESSION['lname'];
             $questions = QuestionDB::get_questions();
             if($_GET['userquestions']==true){
                 include('views/display_questions.php&userquestions=true');
@@ -136,12 +145,12 @@ switch ($action) {
 
         break;
     }*/
-    case 'log_out':{
+    /*case 'log_out':{
         session_unset();
         session_destroy();
         header("Location: .?action=show_login");
         break;
-    }
+    }*/
     default: {
         $error = 'Unknown Action';
         include('errors/error.php');
