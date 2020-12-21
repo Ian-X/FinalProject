@@ -26,8 +26,8 @@ switch ($action) {
 			$error = 'Email and Password not included';
 			include('errors/error.php');
 		}else{
-			$userId = validate_login($email, $password);
-			if($userId == false){
+			$user = AccountDB::validate_login($email, $password);
+			if($user == false){
 				header('Location: .?action=display_registration');
 			}
 			else{

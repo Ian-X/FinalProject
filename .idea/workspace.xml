@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f344ec5-9524-4efc-aa29-d5f725bbc67f" name="Default Changelist" comment="Added question class">
-      <change afterPath="$PROJECT_DIR$/model/answers.php" afterDir="false" />
+    <list default="true" id="8f344ec5-9524-4efc-aa29-d5f725bbc67f" name="Default Changelist" comment="All classes complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/question.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/questions_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/questions_db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/answers.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/answers.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608536592801</updated>
-      <workItem from="1608536593962" duration="15281000" />
+      <workItem from="1608536593962" duration="16687000" />
     </task>
     <task id="LOCAL-00001" summary="Work over Project 3">
       <created>1608536631720</created>
@@ -68,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608556458302</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="All classes complete">
+      <created>1608564349111</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608564349111</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,6 +96,7 @@
     <MESSAGE value="Database class" />
     <MESSAGE value="Added account class" />
     <MESSAGE value="Added question class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added question class" />
+    <MESSAGE value="All classes complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="All classes complete" />
   </component>
 </project>
