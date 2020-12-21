@@ -32,7 +32,7 @@ class AccountDB{
         $statement->bindValue(':password', $password);
         $statement->execute();
         $statement->closeCursor();
-        $user = new Account($email, $fname, $lname, $birthday, $password);
+        $user = new Account($email, $fname, $lname, $bday, $password);
     }
 }
 ?>

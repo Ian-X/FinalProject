@@ -5,10 +5,9 @@ require('model/questions_db.php');
 require('model/accounts.php');
 require('model/answers.php');
 require('model/question.php');
-/*ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
-
+error_reporting(E_ALL);
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
@@ -19,11 +18,11 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'show_login': {
-        session_start();
         include('views/login.php');
         break;
     }
 	case 'validate_login':{
+        session_start();
 		$email = filter_input(INPUT_POST, 'email');
 		$password = filter_input(INPUT_POST, 'password');
 		if($email == NULL || $password == NULL){
@@ -79,7 +78,7 @@ switch ($action) {
         }else{
             $_SESSION["fullname"] = $_SESSION["user"].getFirstName().' '.$_SESSION["user"].getLastName();
             $questions = QuestionDB::get_questions();
-            if($userquestions==true){
+            if($_GET['userquestions']==true){
                 include('views/display_questions.php&userquestions=true');
             }
             else{
@@ -141,6 +140,7 @@ switch ($action) {
         session_unset();
         session_destroy();
         header("Location: .?action=show_login");
+        break;
     }
     default: {
         $error = 'Unknown Action';

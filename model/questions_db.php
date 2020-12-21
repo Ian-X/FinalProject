@@ -4,7 +4,6 @@ class QuestionDB{
         $db = Database::getDB();
         $query = 'SELECT * FROM questions';
         $statement = $db->prepare($query);
-        $statement->bindValue(':userId', $user.getID());
         $statement->execute();
         $statement->closeCursor();
 
