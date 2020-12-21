@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f344ec5-9524-4efc-aa29-d5f725bbc67f" name="Default Changelist" comment="Added toggle button">
+    <list default="true" id="8f344ec5-9524-4efc-aa29-d5f725bbc67f" name="Default Changelist" comment="Fixed session stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/accounts.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/accounts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/accounts_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/accounts_db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/questions_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/questions_db.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/abstract-views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/abstract-views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/display_questions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/display_questions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/questions_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/questions_form.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +44,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608536592801</updated>
-      <workItem from="1608536593962" duration="23742000" />
+      <workItem from="1608536593962" duration="32651000" />
     </task>
     <task id="LOCAL-00001" summary="Work over Project 3">
       <created>1608536631720</created>
@@ -99,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608570659491</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed session stuff">
+      <created>1608573157924</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608573157924</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +135,7 @@
     <MESSAGE value="answer constructor made" />
     <MESSAGE value="Now you're thinking with sessions" />
     <MESSAGE value="Added toggle button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added toggle button" />
+    <MESSAGE value="Fixed session stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed session stuff" />
   </component>
 </project>

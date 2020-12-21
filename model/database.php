@@ -9,7 +9,8 @@ class Database{
         try {
             self::$db = new PDO(self::$dsn,
                 self::$username,
-                self::$password);
+                self::$password,
+                [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]);
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             include('../errors/database_error.php');

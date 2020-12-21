@@ -14,4 +14,9 @@
     <header>
         <h1>IS218 Final Project Ian Yeung</h1>
     </header>
+    <form action="index.php" method="POST">
+        <input type="hidden" name="action" value="log_out">
+        <button type="submit" class="btn-default">Log Out</button>
+
+    </form>
 

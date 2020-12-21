@@ -7,12 +7,11 @@ class AccountDB{
         $statement->bindValue(':email', $email);
         $statement->bindValue(':password', $password);
         $statement->execute();
-        $userDB = $statement->fetch();
+        $user = $statement->fetch();
         $statement->closeCursor();
 
-        if(count($userDB) > 0){
-            $user = new Account($userDB['email'], $userDB['fname'], $userDB['lname'], $userDB['birthday'], $userDB['password']);
-            return $user;
+        if($user != false || count($user) > 0){
+            return new Account($user['id'], $user['email'], $user['fname'], $user['lname'], $user['birthday'], $user['password']);
         }else{
             return false;
         }

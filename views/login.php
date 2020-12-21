@@ -1,6 +1,6 @@
 <?php include('abstract-views/header.php'); ?>
 
-    <form action="index.php" method="POST">
+    <form action="index.php" method="GET">
         <input type="hidden" name="action" value="validate_login">
 
         <div class="form-group">

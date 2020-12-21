@@ -9,8 +9,8 @@ class QuestionDB{
 
         $questions = array();
         foreach($statement as $row){
-            $question = new question($row['id'], $row['owneremail'], $row['ownerid'], $row['createddate'], $row['title'], $row['body'], $row['skills'], $row['score']);
-            $questions[] = $question;
+            $question = new Question($row['id'], $row['owneremail'], $row['ownerid'], $row['createddate'], $row['title'], $row['body'], $row['skills'], $row['score']);
+            array_push($questions, $question);
         }
         return $questions;
     }
