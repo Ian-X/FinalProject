@@ -17,12 +17,11 @@
         <?php if($question->getOwnerID()==$_SESSION['userid']){ ?>
 
         <form action="index.php" method="POST">
-            <input type="hidden" name="action" value="edit_question">
+            <input type="hidden" name="action" value="display_edit_form">
             <input type="hidden" name="questionId" value="<?php echo $question->getID(); ?>">
             <input type="hidden" name="title" value="<?php echo $question->getTitle(); ?>">
             <input type="hidden" name="body" value="<?php echo $question->getBody(); ?>">
             <input type="hidden" name="skills" value="<?php echo $question->getSkills(); ?>">
-            <input type="hidden" name="ownerid" value="<?php echo $question->getOwnerID(); ?>">
 
 
             <button type="submit" class="btn btn-primary">Edit Question</button>
@@ -44,5 +43,4 @@
     </div>
 <?php }
     endforeach; ?>
-</table>
 <?php include('abstract-views/footer.php'); ?>

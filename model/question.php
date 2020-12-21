@@ -55,11 +55,18 @@
         }
         public function getAnswers() {
             $db = Database::getDB();
-            $query = 'SELECT * FROM answers WHERE questionid=:id ORDER BY score DSC';
+            $query = 'SELECT * FROM answers WHERE questionid=:id ORDER BY score DESC';
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $this->id);
             $statement->execute();
+            $something = $statement->fetchAll();
             $statement->closeCursor();
+            $answers = array();
+            foreach($something as $row){
+                $answer = new Answer($row['id'], $row['email'], $row['questionid'], $row['body'], $row['score']);
+                $answers[] = $answer;
+            }
+            return $answers;
         }
     }
 ?>

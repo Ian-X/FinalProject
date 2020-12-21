@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f344ec5-9524-4efc-aa29-d5f725bbc67f" name="Default Changelist" comment="Added log out button">
+      <change afterPath="$PROJECT_DIR$/views/view_question.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/answers.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/answers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/question.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/questions_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/questions_db.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/display_questions.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/display_questions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/edit_questions_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/edit_questions_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/questions_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/questions_form.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +139,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Work over Project 3" />

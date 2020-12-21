@@ -4,7 +4,7 @@
 
 <form action="index.php" method="post">
 	<input type="hidden" name="action" value="submit_question">
-	<input type="hidden" name="userId" value="<?php echo $userId; ?>">
+	<input type="hidden" name="userId" value="<?php echo $_SESSION['userid']; ?>">
 
 	<div class="form-group">
 		<label for="title">Question Title</label>

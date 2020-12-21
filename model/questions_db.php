@@ -33,15 +33,15 @@ class QuestionDB{
         $statement->closeCursor();
     }
 
-    function delete_question ($question){
+    function delete_question ($id){
         $db = Database::getDB();
         $query = 'DELETE FROM questions WHERE id = :id';
         $statement = $db->prepare($query);
-        $statement->bindValue(':id', $question.getID());
+        $statement->bindValue(':id', $id);
         $statement->execute();
         $statement->closeCursor();
     }
-    function edit_question ($question, $title, $body, $skills){
+    function edit_question ($id, $title, $body, $skills){
         $db = Database::getDB();
         $query = 'UPDATE questions 
                     SET title = :title, body = :body, skills = :skills 
@@ -50,8 +50,18 @@ class QuestionDB{
         $statement->bindValue(':title', $title);
         $statement->bindValue(':body', $body);
         $statement->bindValue(':skills', $skills);
-        $statement->bindValue(':id', $question.getID());
+        $statement->bindValue(':id', $id);
         $statement->execute();
         $statement->closeCursor();
+    }
+    function get_question($id){
+        $db = Database::getDB();
+        $query = 'SELECT * FROM questions WHERE id = :id ';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $question = $statement->fetch();
+        $statement->closeCursor();
+        return new Question($question['id'], $question['owneremail'], $question['ownerid'], $question['createddate'], $question['title'], $question['body'], $question['skills'],$question['score']);
     }
 }

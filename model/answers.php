@@ -5,6 +5,21 @@
         private $questionid;
         private $body;
         private $score;
+        public function getID() {
+            return $this->id;
+        }
+        public function getEmail() {
+            return $this->email;
+        }
+        public function getOwnerID() {
+            return $this->questionid;
+        }
+        public function getBody() {
+            return $this->body;
+        }
+        public function getScore() {
+            return $this->score;
+        }
         public function __constructor($id, $email, $questionid, $body, $score){
             $this->id = $id;
             $this->email = $email;

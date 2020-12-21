@@ -126,18 +126,35 @@ switch ($action) {
 
         break;
     }
-	/*
-	case 'edit_question':{
-        $userId = filter_input(INPUT_POST, 'userId');
+	case 'display_edit_form':{
+        $questionId = filter_input(INPUT_POST, 'questionId');
         $title = filter_input(INPUT_POST, 'title');
         $body = filter_input(INPUT_POST, 'body');
         $skills = filter_input(INPUT_POST, 'skills');
-        delete_question($title, $body, $skills, $userId);
-        header("Location: .?action=display_question_form&userId=$userId&title=$title&body=$body&skills=$skills");
+        $userId = $_SESSION['userid'];
+        if ($userId == NULL || $userId < 0) {
+            header('Location: .?action=show_login');
+        } else {
+            include('views/edit_questions_form.php');
+        }
         break;
     }
-
-    */
+    case 'edit_question':{
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $title = filter_input(INPUT_POST, 'title');
+        $body = filter_input(INPUT_POST, 'body');
+        $skills = filter_input(INPUT_POST, 'skills');
+        QuestionDB::edit_question ($questionId, $title, $body, $skills);
+        header("Location: .?action=display_questions");
+        break;
+    }
+    case 'view_question':{
+        $questionId = filter_input(INPUT_POST, 'questionId');
+        $question = QuestionDB::get_question($questionId);
+        $answers = $question->getAnswers();
+        include('views/view_question.php');
+        break;
+    }
     case 'log_out':{
         session_unset();
         session_destroy();
